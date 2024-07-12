@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             val content = withContext(Dispatchers.IO) {
                 fetchContent(url)
+
             }
             val plainText = Jsoup.parse(content).text()
             println(plainText)
@@ -58,6 +59,31 @@ class MainActivity : AppCompatActivity() {
             } else {
                 println("The content is less than 10 characters long.")
             }
+//**********************************************************************************
+            content?.let {
+                // Process the content and update the UI
+                val characters = processContent(it)
+                TextViews2.text = "Characters at 10th, 20th, 30th, ... positions:\n" +
+                        characters.joinToString(separator = "\n") { "Position ${it.first}: ${it.second}" }
+            } ?: run {
+                TextViews2.text = "Failed to fetch content from the URL."
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             // Split the content into words, ignoring case
@@ -120,5 +146,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    // Function to process content and get every 10th character
+    private fun processContent(content: String): List<Pair<Int, Char>> {
+        val contentWithoutWhitespace = content.replace("\\s".toRegex(), "")
+        val characters = mutableListOf<Pair<Int, Char>>()
+
+        for (i in 9 until contentWithoutWhitespace.length step 10) {
+            characters.add(Pair(i + 1, contentWithoutWhitespace[i]))
+        }
+
+        return characters
+    }
+
 
     }

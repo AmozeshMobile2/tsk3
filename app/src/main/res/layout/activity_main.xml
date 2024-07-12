@@ -68,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ellipsize="end"
-                        android:maxLines="5"
+                        android:maxLines="20"
                         android:padding="16dp"
                         android:singleLine="false"
                         android:text="0"
