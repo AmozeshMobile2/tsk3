@@ -21,3 +21,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "IvaTask"
 include(":app")
+include(":core:data")
+include(":core:datastore")
+include(":core:designsystem")
+include(":core:domain")
+include(":core:firebase")
+include(":core:model")
+include(":core:network")
